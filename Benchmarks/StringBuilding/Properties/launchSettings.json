@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "StringBenchmarks": {
+      "commandName": "Project",
+      "commandLineArgs": "-f *"
+    }
+  }
+}
