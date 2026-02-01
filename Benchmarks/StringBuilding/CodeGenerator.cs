@@ -1,13 +1,14 @@
 ﻿namespace StringBuilding;
 
-internal static class Generator
+internal static class CodeGenerator
 {
   public static void Generate()
   {
     foreach (var generator in (Func<int, string>[])[
       GenerateStringConcatenationTestCode,
       GenerateStringInterpolationTestCode,
-      GenerateStringFormatTestCode
+      GenerateStringFormatTestCode,
+      GenerateStringJoinTestCode
       ])
     {
       foreach (int count in (int[])[1, 10, 100, 1000])
@@ -33,7 +34,13 @@ internal static class Generator
   private static string GenerateStringFormatTestCode(int i)
   {
     string template = string.Join("", Enumerable.Range(0, i).Select(i => $"test{{{i}}}"));
-    string data = string.Join(",", Enumerable.Range(1, i).Select(_ => nameof(Benchmarks.IV)));
-    return $"string.Format(\"{template}\",{data})";
+    string values = string.Join(",", Enumerable.Range(1, i).Select(_ => nameof(Benchmarks.IV)));
+    return $"string.Format(\"{template}\",{values})";
+  }
+
+  private static string GenerateStringJoinTestCode(int i)
+  {
+    string values = string.Join(",", Enumerable.Range(1, i).Select(_ => $"\"test\",{nameof(Benchmarks.IV)}"));
+    return $"string.Join(\"\",{values})";
   }
 }

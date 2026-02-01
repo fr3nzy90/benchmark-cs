@@ -1,6 +1,6 @@
 ﻿using BenchmarkDotNet.Running;
 
-//StringBuilding.CodeGenerator.Generate();
+//ObjectSerialization.CodeGenerator.Generate();
 
 BenchmarkSwitcher
   .FromAssembly(typeof(Program).Assembly)
