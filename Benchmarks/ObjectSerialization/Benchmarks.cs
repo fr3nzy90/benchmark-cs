@@ -41,11 +41,8 @@ public class Benchmarks
   }
 
   [Benchmark]
-  public string JsonSerialization()
-  {
-    string result = JsonSerializer.Serialize(_obj);
-    return result;
-  }
+  public string JsonSerialization() =>
+    JsonSerializer.Serialize(_obj);
 
   [Benchmark]
   public string InterpolatedSerialization()
