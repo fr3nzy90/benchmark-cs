@@ -2,15 +2,15 @@
 
 internal record SmallModel
 {
-  public Guid Id { get; init; } = DataGenerator.RandomGuid;
+  public Guid Id { get; set; }
 
-  public bool Propery1 { get; init; } = DataGenerator.RandomBool;
+  public bool Propery1 { get; set; }
 
-  public DateTime Propery1UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery1UpdatedOn { get; set; }
 
-  public string Propery2 { get; init; } = DataGenerator.RandomString;
+  public string? Propery2 { get; set; }
 
-  public DateTime Propery2UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery2UpdatedOn { get; set; }
 
-  public DateTime CreatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime CreatedOn { get; set; }
 }

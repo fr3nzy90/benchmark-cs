@@ -4,10 +4,11 @@ namespace ObjectSerialization;
 
 internal static class CodeGenerator
 {
+  private const string _indent = "  ";
+
   public static void Generate()
   {
     foreach (var generator in (Func<Type, string>[])[
-      GenerateInterpolatedSerializationTestCode,
       GenerateSplitInterpolatedSerializationTestCode
       ])
     {
@@ -15,33 +16,43 @@ internal static class CodeGenerator
       {
         Console.WriteLine($"case nameof({type.Name}):");
         Console.WriteLine("{");
-        Console.WriteLine($"{type.Name} obj = ({type.Name})_obj;");
-        Console.WriteLine($"return {generator(type)};");
+        Console.WriteLine($"{_indent}{type.Name} obj = ({type.Name})_obj;");
+        Console.WriteLine($"{_indent}return {generator(type)};");
         Console.WriteLine("}");
       }
       Console.WriteLine("default:");
-      Console.WriteLine("throw new NotSupportedException();");
+      Console.WriteLine($"{_indent}throw new NotSupportedException();");
+      Console.WriteLine();
+    }
+
+    foreach (var generator in (Func<Type, string>[])[
+      GenerateJsonSerializationTestCode
+      ])
+    {
+      foreach (Type type in (Type[])[typeof(SmallModel), typeof(MediumModel), typeof(LargeModel), typeof(EnormousModel)])
+      {
+        Console.WriteLine($"nameof({type.Name}) => {generator(type)},");
+      }
+      Console.WriteLine("_ => throw new NotSupportedException()");
       Console.WriteLine();
     }
   }
 
-  private static string GenerateInterpolatedSerializationTestCode(Type type)
-  {
-    string template = string.Join(",", type.GetPublicProperties().Select(name => $"{{nameof({type.Name}.{name})}}={{obj.{name}}}"));
-    return $"$\"{{{{{{nameof({type.Name})}}: {template}}}}}\"";
-  }
+  private static string GenerateJsonSerializationTestCode(Type type) =>
+    $"JsonSerializer.Serialize(({type.Name})_obj)";
 
   private static string GenerateSplitInterpolatedSerializationTestCode(Type type)
   {
     string result = "";
     string line = $"$\"{{{{{{nameof({type.Name})}}: ";
+    int propertyIdx = 1;
 
     Action<string> addToLine = (string str) =>
     {
-      if (line.Length + str.Length > 120)
+      if (line.Length + str.Length > 140)
       {
-        result += $"{line}\"\r\n";
-        line = $"+ $\"{str}";
+        result += $"{line}\"{Environment.NewLine}";
+        line = $"{_indent}{_indent}+ $\"{str}";
       }
       else
       {
@@ -49,16 +60,11 @@ internal static class CodeGenerator
       }
     };
 
-    bool propertyAdded = false;
     type
       .GetPublicProperties()
       .Select(name => $"{{nameof({type.Name}.{name})}}={{obj.{name}}}")
       .ToList()
-      .ForEach(str =>
-      {
-        addToLine(propertyAdded ? $",{str}" : str);
-        propertyAdded = true;
-      });
+      .ForEach(str => addToLine(1 < propertyIdx++ ? $",{str}" : str));
 
     addToLine("}}\"");
 

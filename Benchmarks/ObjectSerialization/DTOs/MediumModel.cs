@@ -2,31 +2,31 @@
 
 internal record MediumModel
 {
-  public Guid Id { get; init; } = DataGenerator.RandomGuid;
+  public Guid Id { get; set; }
 
-  public bool Propery1 { get; init; } = DataGenerator.RandomBool;
+  public bool Propery1 { get; set; }
 
-  public DateTime Propery1UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery1UpdatedOn { get; set; }
 
-  public int Propery2 { get; init; } = DataGenerator.RandomInt;
+  public int Propery2 { get; set; }
 
-  public DateTime Propery2UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery2UpdatedOn { get; set; }
 
-  public string Propery3 { get; init; } = DataGenerator.RandomString;
+  public string? Propery3 { get; set; }
 
-  public DateTime Propery3UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery3UpdatedOn { get; set; }
 
-  public decimal Propery4 { get; init; } = DataGenerator.RandomDecimal;
+  public decimal Propery4 { get; set; }
 
-  public DateTime Propery4UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery4UpdatedOn { get; set; }
 
-  public string Propery5 { get; init; } = DataGenerator.RandomString;
+  public string? Propery5 { get; set; }
 
-  public DateTime Propery5UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery5UpdatedOn { get; set; }
 
-  public IList<int> Propery6 { get; init; } = DataGenerator.RandomIntList(5);
+  public IList<int>? Propery6 { get; set; }
 
-  public DateTime Propery6UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery6UpdatedOn { get; set; }
 
-  public DateTime CreatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime CreatedOn { get; set; }
 }

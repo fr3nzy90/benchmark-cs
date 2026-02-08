@@ -4,16 +4,57 @@ internal static class DataGenerator
 {
   private static Random _random = new();
 
-  public static Guid RandomGuid => Guid.NewGuid();
-  public static bool RandomBool => 0 == _random.Next(2) % 2;
-  public static int RandomInt => _random.Next(100);
-  public static decimal RandomDecimal => new decimal(_random.NextDouble() * 100);
-  public static string RandomString => RandomGuid.ToString().Replace("-", "");
-  public static DateTime RandomDateTime => DateTime.UtcNow
-    .AddMilliseconds(_random.Next(2000) - 1000)
-    .AddSeconds(_random.Next(120) - 60)
-    .AddMinutes(_random.Next(120) - 60)
-    .AddHours(_random.Next(48) - 24)
-    .AddDays(_random.Next(730) - 365);
-  public static IList<int> RandomIntList(int count) => Enumerable.Range(0, count).Select(_ => _random.Next(100)).ToList();
+  public static void PopulateRandom<T>(this T obj)
+    where T : notnull
+  {
+    obj
+     .GetType()
+     .GetPropertiesInternal()
+     .ToList()
+     .ForEach(property =>
+     {
+       if (typeof(Guid) == property.PropertyType)
+       {
+         property.SetValue(obj, RandomGuid);
+       }
+       else if (typeof(bool) == property.PropertyType)
+       {
+         property.SetValue(obj, RandomBool);
+       }
+       else if (typeof(int) == property.PropertyType)
+       {
+         property.SetValue(obj, RandomInt);
+       }
+       else if (typeof(decimal) == property.PropertyType)
+       {
+         property.SetValue(obj, RandomDecimal);
+       }
+       else if (typeof(string) == property.PropertyType)
+       {
+         property.SetValue(obj, RandomString);
+       }
+       else if (typeof(DateTime) == property.PropertyType)
+       {
+         property.SetValue(obj, RandomDateTime);
+       }
+       else if (property.PropertyType.IsGenericType && typeof(IList<>) == property.PropertyType.GetGenericTypeDefinition()
+         && 1 == property.PropertyType.GetGenericArguments().Length
+         && typeof(int) == property.PropertyType.GetGenericArguments().FirstOrDefault())
+       {
+         property.SetValue(obj, RandomIntList(5));
+       }
+       else
+       {
+         throw new NotSupportedException();
+       }
+     });
+  }
+
+  private static Guid RandomGuid => Guid.NewGuid();
+  private static bool RandomBool => 0 == _random.Next(2) % 2;
+  private static int RandomInt => _random.Next(100);
+  private static decimal RandomDecimal => new decimal(_random.NextDouble() * 100);
+  private static string RandomString => RandomGuid.ToString().Replace("-", "");
+  private static DateTime RandomDateTime => DateTime.UtcNow + TimeSpan.FromSeconds(_random.NextDouble() * 7200 - 3600);
+  private static IList<int> RandomIntList(int count) => Enumerable.Range(0, count).Select(_ => _random.Next(100)).ToList();
 }

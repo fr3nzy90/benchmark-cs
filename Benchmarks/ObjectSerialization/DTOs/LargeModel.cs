@@ -2,79 +2,79 @@
 
 internal record LargeModel
 {
-  public Guid Id { get; init; } = DataGenerator.RandomGuid;
+  public Guid Id { get; set; }
 
-  public bool Propery1 { get; init; } = DataGenerator.RandomBool;
+  public bool Propery1 { get; set; }
 
-  public DateTime Propery1UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery1UpdatedOn { get; set; }
 
-  public int Propery2 { get; init; } = DataGenerator.RandomInt;
+  public int Propery2 { get; set; }
 
-  public DateTime Propery2UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery2UpdatedOn { get; set; }
 
-  public string Propery3 { get; init; } = DataGenerator.RandomString;
+  public string? Propery3 { get; set; }
 
-  public DateTime Propery3UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery3UpdatedOn { get; set; }
 
-  public decimal Propery4 { get; init; } = DataGenerator.RandomDecimal;
+  public decimal Propery4 { get; set; }
 
-  public DateTime Propery4UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery4UpdatedOn { get; set; }
 
-  public string Propery5 { get; init; } = DataGenerator.RandomString;
+  public string? Propery5 { get; set; }
 
-  public DateTime Propery5UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery5UpdatedOn { get; set; }
 
-  public IList<int> Propery6 { get; init; } = DataGenerator.RandomIntList(5);
+  public IList<int>? Propery6 { get; set; }
 
-  public DateTime Propery6UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery6UpdatedOn { get; set; }
 
-  public bool Propery7 { get; init; } = DataGenerator.RandomBool;
+  public bool Propery7 { get; set; }
 
-  public DateTime Propery7UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery7UpdatedOn { get; set; }
 
-  public int Propery8 { get; init; } = DataGenerator.RandomInt;
+  public int Propery8 { get; set; }
 
-  public DateTime Propery8UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery8UpdatedOn { get; set; }
 
-  public string Propery9 { get; init; } = DataGenerator.RandomString;
+  public string? Propery9 { get; set; }
 
-  public DateTime Propery9UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery9UpdatedOn { get; set; }
 
-  public decimal Propery10 { get; init; } = DataGenerator.RandomDecimal;
+  public decimal Propery10 { get; set; }
 
-  public DateTime Propery10UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery10UpdatedOn { get; set; }
 
-  public string Propery11 { get; init; } = DataGenerator.RandomString;
+  public string? Propery11 { get; set; }
 
-  public DateTime Propery11UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery11UpdatedOn { get; set; }
 
-  public IList<int> Propery12 { get; init; } = DataGenerator.RandomIntList(5);
+  public IList<int>? Propery12 { get; set; }
 
-  public DateTime Propery12UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery12UpdatedOn { get; set; }
 
-  public bool Propery13 { get; init; } = DataGenerator.RandomBool;
+  public bool Propery13 { get; set; }
 
-  public DateTime Propery13UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery13UpdatedOn { get; set; }
 
-  public int Propery14 { get; init; } = DataGenerator.RandomInt;
+  public int Propery14 { get; set; }
 
-  public DateTime Propery14UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery14UpdatedOn { get; set; }
 
-  public string Propery15 { get; init; } = DataGenerator.RandomString;
+  public string? Propery15 { get; set; }
 
-  public DateTime Propery15UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery15UpdatedOn { get; set; }
 
-  public decimal Propery16 { get; init; } = DataGenerator.RandomDecimal;
+  public decimal Propery16 { get; set; }
 
-  public DateTime Propery16UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery16UpdatedOn { get; set; }
 
-  public string Propery17 { get; init; } = DataGenerator.RandomString;
+  public string? Propery17 { get; set; }
 
-  public DateTime Propery17UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery17UpdatedOn { get; set; }
 
-  public IList<int> Propery18 { get; init; } = DataGenerator.RandomIntList(5);
+  public IList<int>? Propery18 { get; set; }
 
-  public DateTime Propery18UpdatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime Propery18UpdatedOn { get; set; }
 
-  public DateTime CreatedOn { get; init; } = DataGenerator.RandomDateTime;
+  public DateTime CreatedOn { get; set; }
 }

@@ -18,6 +18,6 @@ internal static class PropertiesExtensions
       .Select(pi => pi.Name)
       .ToArray();
 
-  private static PropertyInfo[] GetPropertiesInternal(this Type obj) =>
+  public static PropertyInfo[] GetPropertiesInternal(this Type obj) =>
     obj.GetProperties(BindingFlags.Public | BindingFlags.Instance);
 }
